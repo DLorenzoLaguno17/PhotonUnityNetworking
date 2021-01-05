@@ -23,6 +23,7 @@ public class MenuManager : MonoBehaviour
 
     void Awake()
     {
+        // Get all the references
         loader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
         controlsImage = GameObject.Find("ControlsImage").GetComponent<Image>();
         creditsText = GameObject.Find("CreditsText").GetComponent<Text>();
@@ -33,6 +34,12 @@ public class MenuManager : MonoBehaviour
         creditsBackButton = GameObject.Find("CreditsBackButton").GetComponent<Button>();
         controlsButton = GameObject.Find("ControlsButton").GetComponent<Button>();
         controlsBackButton = GameObject.Find("ControlsBackButton").GetComponent<Button>();
+
+        // Deactivate certain UI
+        controlsImage.gameObject.SetActive(false);
+        creditsText.gameObject.SetActive(false);
+        creditsBackButton.gameObject.SetActive(false);
+        controlsBackButton.gameObject.SetActive(false);
     }
 
     // -----------------------------
@@ -41,16 +48,14 @@ public class MenuManager : MonoBehaviour
 
     public void PlayButton()
     {
-
+        loader.LoadNextLevel();
     }
 
     public void CreditsButton()
     {
-        HideMenu();
-    }
+        creditsBackButton.gameObject.SetActive(true);
+        creditsText.gameObject.SetActive(true);
 
-    public void ControlsButton()
-    {
         HideMenu();
     }
 
@@ -60,6 +65,14 @@ public class MenuManager : MonoBehaviour
         creditsText.gameObject.SetActive(false);
 
         ShowMenu();
+    }
+
+    public void ControlsButton()
+    {
+        controlsBackButton.gameObject.SetActive(true);
+        controlsImage.gameObject.SetActive(true);
+
+        HideMenu();
     }
 
     public void ControlsBackButton()
@@ -76,6 +89,7 @@ public class MenuManager : MonoBehaviour
 
     private void HideMenu()
     {
+        titleText.gameObject.SetActive(false);
         playButton.gameObject.SetActive(false); 
         creditsButton.gameObject.SetActive(false); 
         controlsButton.gameObject.SetActive(false);
@@ -83,6 +97,7 @@ public class MenuManager : MonoBehaviour
 
     private void ShowMenu()
     {
+        titleText.gameObject.SetActive(true);
         playButton.gameObject.SetActive(true);
         creditsButton.gameObject.SetActive(true);
         controlsButton.gameObject.SetActive(true);
