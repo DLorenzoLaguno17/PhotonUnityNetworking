@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MaleScript : MonoBehaviour
 {
-
     public Animator animator;
 
     private Transform defaultCamTransform;
@@ -56,8 +55,6 @@ public class MaleScript : MonoBehaviour
         {
             animator.SetBool("Punch1", false);
         }
-
-
 
     }
 }
