@@ -56,5 +56,15 @@ public class MaleScript : MonoBehaviour
             animator.SetBool("Punch1", false);
         }
 
+        if (Input.GetKey(KeyCode.O))
+        {
+            animator.SetBool("Kick1", true);
+
+        }
+        else
+        {
+            animator.SetBool("Kick1", false);
+        }
+
     }
 }
