@@ -46,7 +46,18 @@ public class MaleScript : MonoBehaviour
             animator.SetBool("Backward", false);
         }
 
-        if (Input.GetKey(KeyCode.P))
+       
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            animator.SetBool("Punch3", true);
+
+        }
+        else
+        {
+            animator.SetBool("Punch3", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
         {
             animator.SetBool("Punch1", true);
 
@@ -56,7 +67,23 @@ public class MaleScript : MonoBehaviour
             animator.SetBool("Punch1", false);
         }
 
-        if (Input.GetKey(KeyCode.O))
+
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            animator.SetBool("Punch2", true);
+
+        }
+        else
+        {
+            animator.SetBool("Punch2", false);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.J))
         {
             animator.SetBool("Kick1", true);
 
@@ -64,6 +91,49 @@ public class MaleScript : MonoBehaviour
         else
         {
             animator.SetBool("Kick1", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            animator.SetBool("Kick3", true);
+
+        }
+        else
+        {
+            animator.SetBool("Kick3", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            animator.SetBool("Kick2", true);
+
+        }
+        else
+        {
+            animator.SetBool("Kick2", false);
+        }
+
+      
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            animator.SetBool("Crouch", true);
+
+        }
+        else
+        {
+            animator.SetBool("Crouch", false);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            animator.SetBool("Jump", true);
+
+        }
+        else
+        {
+            animator.SetBool("Jump", false);
         }
 
     }
