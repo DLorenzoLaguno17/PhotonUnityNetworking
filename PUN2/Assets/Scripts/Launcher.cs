@@ -25,9 +25,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        PhotonNetwork.NickName = "Player" + cnt++.ToString();
-        print(PhotonNetwork.NickName + " joined the lobby");
-
+        // Create the room or join in if it is already created
         if (PhotonNetwork.CountOfRooms == 0)
             PhotonNetwork.CreateRoom("FightingRoom");
         else

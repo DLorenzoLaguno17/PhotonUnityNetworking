@@ -32,6 +32,11 @@ namespace Photon.Pun
 
         private static HashSet<PhotonView> reusablePVHashset = new HashSet<PhotonView>();
 
+        public static void RaiseEvent(bool v, object data, RaiseEventOptions @default)
+        {
+            throw new NotImplementedException();
+        }
+
 
         /// <summary>
         /// The photon view list.
