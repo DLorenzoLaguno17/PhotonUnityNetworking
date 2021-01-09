@@ -1,8 +1,8 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -21,6 +21,7 @@ public class LevelLoader : MonoBehaviour
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
+        PhotonNetwork.LoadLevel(levelIndex);
+        //SceneManager.LoadScene(levelIndex);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class MenuManager : MonoBehaviour
 {
@@ -48,7 +49,10 @@ public class MenuManager : MonoBehaviour
 
     public void PlayButton()
     {
-        loader.LoadNextLevel();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            loader.LoadNextLevel();
+        }
     }
 
     public void CreditsButton()

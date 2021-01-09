@@ -524,6 +524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371437339}
   - component: {fileID: 371437340}
+  - component: {fileID: 371437341}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -555,6 +556,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d58b4c7ff82d3ab4b824d89936c4d863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &371437341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371437338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0e07de84a025f47a21bfbbb2a77264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &404007269
@@ -768,7 +781,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
