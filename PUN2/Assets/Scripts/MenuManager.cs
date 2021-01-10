@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour
     // Variables
     private LevelLoader loader;
     private Image controlsImage;
+    private Text controlsText;
     private Text creditsText;
     private Text titleText;
 
@@ -27,6 +28,7 @@ public class MenuManager : MonoBehaviour
         // Get all the references
         loader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
         controlsImage = GameObject.Find("ControlsImage").GetComponent<Image>();
+        controlsText = GameObject.Find("ControlsText").GetComponent<Text>();
         creditsText = GameObject.Find("CreditsText").GetComponent<Text>();
         titleText = GameObject.Find("TitleText").GetComponent<Text>();
 
@@ -38,6 +40,7 @@ public class MenuManager : MonoBehaviour
 
         // Deactivate certain UI
         controlsImage.gameObject.SetActive(false);
+        controlsText.gameObject.SetActive(false);
         creditsText.gameObject.SetActive(false);
         creditsBackButton.gameObject.SetActive(false);
         controlsBackButton.gameObject.SetActive(false);
@@ -75,6 +78,7 @@ public class MenuManager : MonoBehaviour
     {
         controlsBackButton.gameObject.SetActive(true);
         controlsImage.gameObject.SetActive(true);
+        controlsText.gameObject.SetActive(true);
 
         HideMenu();
     }
@@ -83,6 +87,7 @@ public class MenuManager : MonoBehaviour
     {
         controlsBackButton.gameObject.SetActive(false);
         controlsImage.gameObject.SetActive(false);
+        controlsText.gameObject.SetActive(false);
 
         ShowMenu();
     }

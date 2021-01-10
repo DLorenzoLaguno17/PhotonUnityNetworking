@@ -27,7 +27,6 @@ public class MaleScript : MonoBehaviour
         Crouch
     }
 
-
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
