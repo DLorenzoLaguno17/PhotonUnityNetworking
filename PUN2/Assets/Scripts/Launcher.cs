@@ -27,12 +27,6 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        // Create the room or join in if it is already created
-        /*if (PhotonNetwork.CountOfRooms == 0)
-            PhotonNetwork.CreateRoom("FightingRoom");
-        else
-            PhotonNetwork.JoinRoom("FightingRoom");*/
-
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 4;
         PhotonNetwork.JoinOrCreateRoom("FightingRoom", options, TypedLobby.Default);
