@@ -11,30 +11,38 @@ public class Launcher : MonoBehaviourPunCallbacks
     private void Start()
     {
         print("Connecting to server");
-        PhotonNetwork.GameVersion = "1.0";
+        PhotonNetwork.GameVersion = "0.1";
+        PhotonNetwork.OfflineMode = false;
         PhotonNetwork.ConnectUsingSettings();
+        gameObject.AddComponent<PhotonView>();
     }
 
     // PUN2 Methods
     public override void OnConnectedToMaster()
     {
         print("Connected to server");
-        PhotonNetwork.JoinLobby();
+        PhotonNetwork.JoinLobby(TypedLobby.Default);
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnJoinedLobby()
     {
         // Create the room or join in if it is already created
-        if (PhotonNetwork.CountOfRooms == 0)
+        /*if (PhotonNetwork.CountOfRooms == 0)
             PhotonNetwork.CreateRoom("FightingRoom");
         else
-            PhotonNetwork.JoinRoom("FightingRoom");
+            PhotonNetwork.JoinRoom("FightingRoom");*/
+
+        RoomOptions options = new RoomOptions();
+        options.MaxPlayers = 4;
+        PhotonNetwork.JoinOrCreateRoom("FightingRoom", options, TypedLobby.Default);
     }
 
     public override void OnJoinedRoom()
     {
         print("Joined room");
+
+        print(PhotonNetwork.PlayerList.Length);
     }
 
     public override void OnCreatedRoom()
