@@ -3,35 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-using ExitGames.Client.Photon;
 
 public class SelectionButtons : MonoBehaviour
 {
     private LevelLoader loader;
     private Text secondPlayerText;
-    private byte CONNECTION_EVENT = 10;
+    private Image secondPlayerImage;
 
     private void Awake()
     {
         loader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
-        secondPlayerText = GameObject.Find("Player2").GetComponent<Text>();
+        secondPlayerText = GameObject.Find("TextP2").GetComponent<Text>();
+        secondPlayerImage = GameObject.Find("ImageP2").GetComponent<Image>();
+        secondPlayerImage.gameObject.SetActive(false);
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        PhotonNetwork.NetworkingClient.EventReceived += ConectionEventReceived;
-    }
-
-    private void OnDisable()
-    {
-        PhotonNetwork.NetworkingClient.EventReceived -= ConectionEventReceived;
-    }
-
-    private void ConectionEventReceived(EventData obj)
-    {
-        if (obj.Code == CONNECTION_EVENT)
+        if (PhotonNetwork.PlayerList.Length > 1)
         {
-            secondPlayerText.text = "pito";
+            secondPlayerText.text = "Player 2";
+            secondPlayerImage.gameObject.SetActive(true);
         }
     }
 
