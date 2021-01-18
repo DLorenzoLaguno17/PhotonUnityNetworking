@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class MenuManager : MonoBehaviour
 {
@@ -52,10 +53,8 @@ public class MenuManager : MonoBehaviour
 
     public void PlayButton()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            loader.LoadNextLevel();
-        }
+        GetComponent<Launcher>().EnterRoom();
+        loader.LoadSceneByName("ChoosingMenu");
     }
 
     public void CreditsButton()

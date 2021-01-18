@@ -25,13 +25,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
-    public override void OnJoinedLobby()
-    {
-        RoomOptions options = new RoomOptions();
-        options.MaxPlayers = 4;
-        PhotonNetwork.JoinOrCreateRoom("FightingRoom", options, TypedLobby.Default);
-    }
-
     public override void OnJoinedRoom()
     {
         print("Joined room");
@@ -63,5 +56,12 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
+    }
+
+    public void EnterRoom()
+    {
+        RoomOptions options = new RoomOptions();
+        options.MaxPlayers = 4;
+        PhotonNetwork.JoinOrCreateRoom("FightingRoom", options, TypedLobby.Default);
     }
 }
