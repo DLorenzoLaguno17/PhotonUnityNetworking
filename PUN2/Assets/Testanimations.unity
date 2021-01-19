@@ -486,5 +486,6 @@ PrefabInstance:
         'B_L_Finger3'\n\tTransform 'B_L_Finger11'\n\tand more ...\n\tFrom animation
         clip 'mixamo.com'"
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3956577975184542522, guid: 6c9e9d1601a28e44f847786a3d81e389, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6c9e9d1601a28e44f847786a3d81e389, type: 3}
