@@ -7,6 +7,10 @@ using ExitGames.Client.Photon;
 
 public class MaleScript : MonoBehaviour
 {
+    public Animator animator;
+    public HealthBar playerBar;
+    public Collider[] attackColl;
+
     enum Attacktype
     {
         HARD = 0,
@@ -14,10 +18,10 @@ public class MaleScript : MonoBehaviour
         SOFT
     }
 
-    public Animator animator;
+    private int playerHealth = 0;
     private PhotonView PV;
-    private byte ANIMATION_CHANGE_EVENT = 5;
-    
+    private byte ATTACK_EVENT = 2;
+    private byte ANIMATION_CHANGE_EVENT = 5;    
 
     private Transform defaultCamTransform;
     private Vector3 resetPos;
@@ -25,7 +29,6 @@ public class MaleScript : MonoBehaviour
     private GameObject cam;
     private GameObject fighter;
 
-    public Collider[] attackColl;
     public enum AnimationChange
     {
         Forward,
@@ -49,6 +52,10 @@ public class MaleScript : MonoBehaviour
         resetRot = defaultCamTransform.rotation;
         fighter = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
+
+        // Player health
+        playerHealth = (int)playerBar.slider.maxValue;
+        playerBar.SetMaxHealth(playerHealth);
     }
 
     private void OnEnable()
@@ -67,9 +74,20 @@ public class MaleScript : MonoBehaviour
         {
             object[] datas = (object[])obj.CustomData;
             int id = (int)datas[0];
+            int damage = (int)datas[1];
+
+            if (id == PV.ViewID)
+            {
+                ReceiveDamage(damage);
+            }
+        }
+        else if (obj.Code == ANIMATION_CHANGE_EVENT)
+        {
+            object[] datas = (object[])obj.CustomData;
+            int id = (int)datas[0];
             bool trigger = (bool)datas[1];
             AnimationChange anim = (AnimationChange)datas[2];
-               
+
             if (id == PV.ViewID)
             {
                 if (anim == AnimationChange.Forward)
@@ -195,14 +213,25 @@ public class MaleScript : MonoBehaviour
 
     }
 
-    // Tools
+    // Events
     private void SendAnimationEvent(bool trigger, AnimationChange anim)
     {
         object[] datas = new object[] { PV.ViewID, trigger, anim };
         PhotonNetwork.RaiseEvent(ANIMATION_CHANGE_EVENT, datas, RaiseEventOptions.Default, SendOptions.SendReliable);
     }
+    private void SendCollisionEvent(int id, int damage)
+    {
+        object[] datas = new object[] { id, damage };
+        PhotonNetwork.RaiseEvent(ATTACK_EVENT, datas, RaiseEventOptions.Default, SendOptions.SendReliable);
+    }
 
-    //Attack Collider Handler
+    public void ReceiveDamage(int damage)
+    {
+        playerHealth -= damage;
+        playerBar.SetHealth(playerHealth);
+    }
+
+    // Attack collider handler
     private void LaunchAttack (Collider coll, Attacktype attackType)
     {
         Collider[] cols = Physics.OverlapBox(coll.bounds.center, coll.bounds.extents, coll.transform.rotation, LayerMask.GetMask("Hitbox"));
@@ -210,28 +239,37 @@ public class MaleScript : MonoBehaviour
         {
             if (c.transform.parent.parent = transform)
                 continue;
-            float damage = 0;
+
+            int damage = 0;
             switch(attackType)
             {
                 case Attacktype.SOFT:
                    damage = 10;
                 break;
+
                 case Attacktype.NORMAL:
                     damage = 25;
                 break;
+
                 case Attacktype.HARD:
                     damage = 40;
                 break;
+
                 default:
                     damage = 0;
                 break;
-
-
             }
-           
 
             Debug.Log(c.name);
+            GameObject enemy = c.transform.parent.parent.gameObject;
+
+            // Damage enemy and send event to the other client
+            if (enemy)
+            {
+                int id = enemy.GetComponent<PhotonView>().ViewID;
+                SendCollisionEvent(id, damage);
+                enemy.GetComponent<MaleScript>().ReceiveDamage(damage);
+            }
         }
     }
-
 }
