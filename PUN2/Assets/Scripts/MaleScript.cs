@@ -28,6 +28,7 @@ public class MaleScript : MonoBehaviour
     private Quaternion resetRot;
     private GameObject cam;
     private GameObject fighter;
+    private LevelLoader loader;
 
     public enum AnimationChange
     {
@@ -52,6 +53,7 @@ public class MaleScript : MonoBehaviour
         resetRot = defaultCamTransform.rotation;
         fighter = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
+        loader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
 
         // Player health
         playerHealth = (int)playerBar.slider.maxValue;
@@ -210,7 +212,6 @@ public class MaleScript : MonoBehaviour
         {
             animator.SetBool("Kick2", false);
         }
-
     }
 
     // Events
@@ -219,6 +220,7 @@ public class MaleScript : MonoBehaviour
         object[] datas = new object[] { PV.ViewID, trigger, anim };
         PhotonNetwork.RaiseEvent(ANIMATION_CHANGE_EVENT, datas, RaiseEventOptions.Default, SendOptions.SendReliable);
     }
+
     private void SendCollisionEvent(int id, int damage)
     {
         object[] datas = new object[] { id, damage };
@@ -229,6 +231,11 @@ public class MaleScript : MonoBehaviour
     {
         playerHealth -= damage;
         playerBar.SetHealth(playerHealth);
+
+        if (playerHealth <= 0)
+        {
+            loader.LoadSceneByName("PostCombat");
+        }
     }
 
     // Attack collider handler
