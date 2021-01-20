@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - LevelLoader
+  - Hitbox
   layers:
   - Default
   - TransparentFX

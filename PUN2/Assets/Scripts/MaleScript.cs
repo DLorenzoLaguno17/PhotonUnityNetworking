@@ -7,9 +7,17 @@ using ExitGames.Client.Photon;
 
 public class MaleScript : MonoBehaviour
 {
+    enum Attacktype
+    {
+        HARD = 0,
+        NORMAL,
+        SOFT
+    }
+
     public Animator animator;
     private PhotonView PV;
     private byte ANIMATION_CHANGE_EVENT = 5;
+    
 
     private Transform defaultCamTransform;
     private Vector3 resetPos;
@@ -17,6 +25,7 @@ public class MaleScript : MonoBehaviour
     private GameObject cam;
     private GameObject fighter;
 
+    public Collider[] attackColl;
     public enum AnimationChange
     {
         Forward,
@@ -122,22 +131,12 @@ public class MaleScript : MonoBehaviour
             animator.SetBool("Crouch", false);
             SendAnimationEvent(false, AnimationChange.Crouch);
         }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            animator.SetBool("Jump", true);
-            SendAnimationEvent(true, AnimationChange.Jump);
-        }
-        else
-        {
-            animator.SetBool("Jump", false);
-            SendAnimationEvent(false, AnimationChange.Jump);
-        }
        
         // Player attacks
         if (Input.GetKeyDown(KeyCode.I))
         {
             animator.SetBool("Punch3", true);
+            LaunchAttack(attackColl[1], Attacktype.SOFT);
         }
         else
         {
@@ -147,6 +146,7 @@ public class MaleScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O))
         {
             animator.SetBool("Punch1", true);
+            LaunchAttack(attackColl[0], Attacktype.NORMAL);
         }
         else
         {
@@ -156,6 +156,7 @@ public class MaleScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             animator.SetBool("Punch2", true);
+            LaunchAttack(attackColl[0], Attacktype.HARD);
         }
         else
         {
@@ -165,6 +166,7 @@ public class MaleScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             animator.SetBool("Kick1", true);
+            LaunchAttack(attackColl[2], Attacktype.SOFT);
         }
         else
         {
@@ -174,6 +176,7 @@ public class MaleScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             animator.SetBool("Kick3", true);
+            LaunchAttack(attackColl[1], Attacktype.NORMAL);
         }
         else
         {
@@ -183,6 +186,7 @@ public class MaleScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             animator.SetBool("Kick2", true);
+            LaunchAttack(attackColl[0], Attacktype.HARD);
         }
         else
         {
@@ -197,4 +201,37 @@ public class MaleScript : MonoBehaviour
         object[] datas = new object[] { PV.ViewID, trigger, anim };
         PhotonNetwork.RaiseEvent(ANIMATION_CHANGE_EVENT, datas, RaiseEventOptions.Default, SendOptions.SendReliable);
     }
+
+    //Attack Collider Handler
+    private void LaunchAttack (Collider coll, Attacktype attackType)
+    {
+        Collider[] cols = Physics.OverlapBox(coll.bounds.center, coll.bounds.extents, coll.transform.rotation, LayerMask.GetMask("Hitbox"));
+        foreach (Collider c in cols)
+        {
+            if (c.transform.parent.parent = transform)
+                continue;
+            float damage = 0;
+            switch(attackType)
+            {
+                case Attacktype.SOFT:
+                   damage = 10;
+                break;
+                case Attacktype.NORMAL:
+                    damage = 25;
+                break;
+                case Attacktype.HARD:
+                    damage = 40;
+                break;
+                default:
+                    damage = 0;
+                break;
+
+
+            }
+           
+
+            Debug.Log(c.name);
+        }
+    }
+
 }
