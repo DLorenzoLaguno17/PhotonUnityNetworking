@@ -54,7 +54,7 @@ public class MenuManager : MonoBehaviour
     public void PlayButton()
     {
         GetComponent<Launcher>().EnterRoom();
-        loader.LoadSceneByName("ChoosingMenu");
+        loader.LoadSceneByName("ChoosingMenu", false);
     }
 
     public void CreditsButton()

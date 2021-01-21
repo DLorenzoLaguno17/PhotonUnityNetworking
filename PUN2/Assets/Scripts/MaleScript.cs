@@ -72,7 +72,7 @@ public class MaleScript : MonoBehaviour
 
     private void NetworkingClient_EventReceived(EventData obj)
     {
-        if (obj.Code == ANIMATION_CHANGE_EVENT)
+        if (obj.Code == ATTACK_EVENT)
         {
             object[] datas = (object[])obj.CustomData;
             int id = (int)datas[0];
