@@ -280,9 +280,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectionButtons, Assembly-CSharp
-        m_MethodName: PlayButton
+      - m_Target: {fileID: 1604469740}
+        m_TargetAssemblyTypeName: PostCombatButtons, Assembly-CSharp
+        m_MethodName: MenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1031,9 +1031,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectionButtons, Assembly-CSharp
-        m_MethodName: PlayButton
+      - m_Target: {fileID: 1604469740}
+        m_TargetAssemblyTypeName: PostCombatButtons, Assembly-CSharp
+        m_MethodName: RematchButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: d2c0f81f854cdf14dac1e4663e0cacb4, type: 3}
     m_FontSize: 300
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
@@ -1224,7 +1224,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: PLAYER 1 WINS!
+  m_Text: we got a winner!
 --- !u!222 &2002743030
 CanvasRenderer:
   m_ObjectHideFlags: 0

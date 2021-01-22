@@ -29,10 +29,13 @@ public class LevelLoader : MonoBehaviour
             transition.SetTrigger("Start");
     }
 
-    private void SendSceneEvent()
+    private void SendSceneEvent(string sceneName)
     {
-        object[] datas = new object[] { "test" };
+        object[] datas = new object[] { sceneName };
         PhotonNetwork.RaiseEvent(LOAD_SCENE_EVENT, datas, RaiseEventOptions.Default, SendOptions.SendReliable);
+
+        /*if (sceneName == "MainMenu")
+            PhotonNetwork.LeaveRoom();*/
     }
 
     // Scene loaders
@@ -47,7 +50,7 @@ public class LevelLoader : MonoBehaviour
         transition.SetTrigger("Start");
 
         if (loadForEveryone)
-            SendSceneEvent();
+            SendSceneEvent(sceneName);
 
         // Wait for transition to end
         yield return new WaitForSeconds(transitionTime);

@@ -10,6 +10,7 @@ public class MaleScript : MonoBehaviour
     public Animator animator;
     public HealthBar playerBar;
     public Collider[] attackColl;
+    private bool isLoading = false;
 
     enum Attacktype
     {
@@ -232,8 +233,9 @@ public class MaleScript : MonoBehaviour
         playerHealth -= damage;
         playerBar.SetHealth(playerHealth);
 
-        if (playerHealth <= 0)
+        if (playerHealth <= 0 && PhotonNetwork.IsMasterClient && !isLoading)
         {
+            isLoading = true;
             loader.LoadSceneByName("PostCombat");
         }
     }
