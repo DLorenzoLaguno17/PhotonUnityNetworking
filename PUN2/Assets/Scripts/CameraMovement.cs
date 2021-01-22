@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    private float increaseTime = 0.01f;
+    private float increaseTime = 0.005f;
     private float lastTimeIncreased = 0.0f;
 
     private Vector3 player1 = Vector3.zero;
@@ -37,7 +37,7 @@ public class CameraMovement : MonoBehaviour
         // Calculate camera position
         Vector3 distance = player2 - player1;
         Vector3 pointInBetween = player2 - (distance / 2);
-        if (Mathf.Abs(pointInBetween.magnitude - lastPointInBetween.magnitude) > 0.25f)
+        if (Mathf.Abs(pointInBetween.magnitude - lastPointInBetween.magnitude) > 0.5f)
             lastPointInBetween = pointInBetween;
 
         // Move camera
@@ -46,10 +46,9 @@ public class CameraMovement : MonoBehaviour
             if (Mathf.Abs(pos.z - lastPointInBetween.z) > 1.0f)
             {
                 if (pos.z < lastPointInBetween.z)
-                    pos.z += 0.25f;
+                    pos.z += 0.05f;
                 else
-                    pos.z -= 0.25f;
-                
+                    pos.z -= 0.05f;                
             }
 
             transform.SetPositionAndRotation(pos, rot); 

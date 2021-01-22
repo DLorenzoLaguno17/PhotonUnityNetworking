@@ -244,7 +244,7 @@ public class MaleScript : MonoBehaviour
         Collider[] cols = Physics.OverlapBox(coll.bounds.center, coll.bounds.extents, coll.transform.rotation, LayerMask.GetMask("Hitbox"));
         foreach (Collider c in cols)
         {
-            if (c.transform.parent.parent = transform)
+            if (c.transform.parent.parent == transform)
                 continue;
 
             int damage = 0;

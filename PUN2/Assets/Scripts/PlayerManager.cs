@@ -24,9 +24,13 @@ public class PlayerManager : MonoBehaviour
     void CreateController()
     {
         Vector3 spawnPos = Vector3.zero;
-        if (!PhotonNetwork.IsMasterClient)
-            spawnPos.z = 3.5f;
 
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Male"), spawnPos, Quaternion.identity);
+        if (PhotonNetwork.IsMasterClient)
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Male"), spawnPos, Quaternion.identity);
+        else 
+        { 
+            spawnPos.z = 3.5f;
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Male2"), spawnPos, Quaternion.Euler(0.0f, 180.0f, 0.0f));
+        }
     }
 }

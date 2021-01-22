@@ -186,8 +186,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -257, y: 243}
-  m_SizeDelta: {x: 401.00024, y: 39.31357}
+  m_AnchoredPosition: {x: -157.3, y: 243}
+  m_SizeDelta: {x: 600.40106, y: 39.31357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1963152926045132614
 MonoBehaviour:
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 8481952472976033011}
   - component: {fileID: 2742927773857061561}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
