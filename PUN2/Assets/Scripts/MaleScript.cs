@@ -34,12 +34,8 @@ public class MaleScript : MonoBehaviour
     {
         Forward,
         Backward,
-        Punch1,
-        Punch2,
-        Punch3,
-        Kick1,
-        Kick2,
-        Kick3,
+        Punch,
+        Kick,
         Jump,
         Crouch
     }
@@ -102,22 +98,10 @@ public class MaleScript : MonoBehaviour
                 else if (anim == AnimationChange.Backward)
                     animator.SetBool("Backward", trigger);
 
-                else if (anim == AnimationChange.Punch1)
+                else if (anim == AnimationChange.Punch)
                     animator.SetBool("Punch", trigger);
 
-                else if (anim == AnimationChange.Punch2)
-                    animator.SetBool("Punch", trigger);
-
-                else if (anim == AnimationChange.Punch3)
-                    animator.SetBool("Punch", trigger);
-
-                else if (anim == AnimationChange.Kick1)
-                    animator.SetBool("Kick", trigger);
-
-                else if (anim == AnimationChange.Kick2)
-                    animator.SetBool("Kick", trigger);
-
-                else if (anim == AnimationChange.Kick3)
+                else if (anim == AnimationChange.Kick)
                     animator.SetBool("Kick", trigger);
 
                 else if (anim == AnimationChange.Crouch)
@@ -172,73 +156,61 @@ public class MaleScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             animator.SetBool("Punch3", true);
-            SendAnimationEvent(true, AnimationChange.Punch3);
             LaunchAttack(attackColl[1], Attacktype.SOFT);
         }
         else
         {
             animator.SetBool("Punch3", false);
-            SendAnimationEvent(false, AnimationChange.Punch3);
         }
 
         if (Input.GetKeyDown(KeyCode.O))
         {
             animator.SetBool("Punch1", true);
-            SendAnimationEvent(true, AnimationChange.Punch1);
             LaunchAttack(attackColl[0], Attacktype.NORMAL);
         }
         else
         {
             animator.SetBool("Punch1", false);
-            SendAnimationEvent(false, AnimationChange.Punch1);
         }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
             animator.SetBool("Punch2", true);
-            SendAnimationEvent(true, AnimationChange.Punch2);
             LaunchAttack(attackColl[0], Attacktype.HARD);
         }
         else
         {
             animator.SetBool("Punch2", false);
-            SendAnimationEvent(false, AnimationChange.Punch2);
         }
 
         if (Input.GetKeyDown(KeyCode.J))
         {
             animator.SetBool("Kick1", true);
-            SendAnimationEvent(true, AnimationChange.Kick1);
             LaunchAttack(attackColl[2], Attacktype.SOFT);
         }
         else
         {
             animator.SetBool("Kick1", false);
-            SendAnimationEvent(false, AnimationChange.Kick1);
         }
 
         if (Input.GetKeyDown(KeyCode.K))
         {
             animator.SetBool("Kick3", true);
-            SendAnimationEvent(true, AnimationChange.Kick3);
             LaunchAttack(attackColl[1], Attacktype.NORMAL);
         }
         else
         {
             animator.SetBool("Kick3", false);
-            SendAnimationEvent(false, AnimationChange.Kick3);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
             animator.SetBool("Kick2", true);
-            SendAnimationEvent(true, AnimationChange.Kick2);
             LaunchAttack(attackColl[0], Attacktype.HARD);
         }
         else
         {
             animator.SetBool("Kick2", false);
-            SendAnimationEvent(false, AnimationChange.Kick2);
         }
     }
 
