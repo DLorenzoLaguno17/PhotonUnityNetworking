@@ -311,7 +311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -690, y: -454}
+  m_AnchoredPosition: {x: -709, y: -456}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &56552700
@@ -913,7 +913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -690, y: -318}
+  m_AnchoredPosition: {x: -709, y: -335}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &721398159
@@ -1129,7 +1129,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -690, y: -592.8}
+  m_AnchoredPosition: {x: -709, y: -576}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838303547
@@ -1615,15 +1615,15 @@ RectTransform:
   m_GameObject: {fileID: 1120136617}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.33, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 1508416762}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -533, y: -595.83}
-  m_SizeDelta: {x: -478.29724, y: 24.201218}
+  m_AnchoredPosition: {x: -61, y: -653}
+  m_SizeDelta: {x: 2685.3804, y: 1750.2505}
   m_Pivot: {x: 0.5, y: 0.37464324}
 --- !u!114 &1120136619
 MonoBehaviour:
@@ -1658,14 +1658,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Ferran Barnes - 3D Art
+  m_Text: 'Ferran Barnes - Scenario & 2D Art
 
-    Pol Cortes - UI
+    Pol Cortes - Audio & animations
 
-    Jacobo Galofre - Gameplay
+    Jacobo
+    Galofre - Combat
 
-    Daniel
-    Lorenzo - Network
+    Daniel Lorenzo - Network & UI
 
 '
 --- !u!222 &1120136620
@@ -2045,7 +2045,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -690, y: -731}
+  m_AnchoredPosition: {x: -709, y: -699}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1526246888
