@@ -19,6 +19,7 @@ public class MenuManager : MonoBehaviour
     private Button creditsBackButton;
     private Button controlsButton;
     private Button controlsBackButton;
+    private Button quitButton;
 
     // -----------------------------
     // CORE
@@ -38,7 +39,7 @@ public class MenuManager : MonoBehaviour
         creditsBackButton = GameObject.Find("CreditsBackButton").GetComponent<Button>();
         controlsButton = GameObject.Find("ControlsButton").GetComponent<Button>();
         controlsBackButton = GameObject.Find("ControlsBackButton").GetComponent<Button>();
-
+        quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
         // Deactivate certain UI
         controlsImage.gameObject.SetActive(false);
         controlsText.gameObject.SetActive(false);
@@ -91,6 +92,11 @@ public class MenuManager : MonoBehaviour
         ShowMenu();
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+
+    }
     // -----------------------------
     // TOOLS
     // -----------------------------
@@ -101,6 +107,7 @@ public class MenuManager : MonoBehaviour
         playButton.gameObject.SetActive(false); 
         creditsButton.gameObject.SetActive(false); 
         controlsButton.gameObject.SetActive(false);
+        quitButton.gameObject.SetActive(false);
     }
 
     private void ShowMenu()
@@ -109,5 +116,6 @@ public class MenuManager : MonoBehaviour
         playButton.gameObject.SetActive(true);
         creditsButton.gameObject.SetActive(true);
         controlsButton.gameObject.SetActive(true);
+        quitButton.gameObject.SetActive(true);
     }
 }
