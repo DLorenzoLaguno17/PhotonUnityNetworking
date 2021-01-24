@@ -54,13 +54,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Motion'\n\tTransform 'B_R_Finger0'\n\tTransform
-    'B_L_Foot'\n\tTransform 'B_R_Finger4'\n\tTransform 'B_L_ForeArmTwist'\n\tTransform
-    'B_Neck'\n\tTransform 'B_L_Forearm'\n\tTransform 'B_R_Finger11'\n\tTransform
-    'B_L_Finger3'\n\tTransform 'B_L_Finger11'\n\tand more ...\n\tFrom animation clip
-    'mixamo.com'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0

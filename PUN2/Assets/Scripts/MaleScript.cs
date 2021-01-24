@@ -118,40 +118,6 @@ public class MaleScript : MonoBehaviour
     {
         if (!PV.IsMine)
             return;
-
-        // Player movement
-        if (Input.GetKey(KeyCode.D))
-        {
-            animator.SetBool("Forward", true);
-            SendAnimationEvent(true, AnimationChange.Forward);   
-        }
-        else 
-        {
-            animator.SetBool("Forward", false);
-            SendAnimationEvent(false, AnimationChange.Forward);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            animator.SetBool("Backward", true);
-            SendAnimationEvent(true, AnimationChange.Backward);
-        }
-        else
-        {
-            animator.SetBool("Backward", false);
-            SendAnimationEvent(false, AnimationChange.Backward);
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            animator.SetBool("Crouch", true);
-            SendAnimationEvent(true, AnimationChange.Crouch);
-        }
-        else
-        {
-            animator.SetBool("Crouch", false);
-            SendAnimationEvent(false, AnimationChange.Crouch);
-        }
        
         // Player attacks
         if (Input.GetKeyDown(KeyCode.I))
@@ -212,6 +178,40 @@ public class MaleScript : MonoBehaviour
         else
         {
             animator.SetBool("Kick2", false);
+        }
+
+        // Player movement
+        if (Input.GetKey(KeyCode.D))
+        {
+            animator.SetBool("Forward", true);
+            SendAnimationEvent(true, AnimationChange.Forward);
+        }
+        else
+        {
+            animator.SetBool("Forward", false);
+            SendAnimationEvent(false, AnimationChange.Forward);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            animator.SetBool("Backward", true);
+            SendAnimationEvent(true, AnimationChange.Backward);
+        }
+        else
+        {
+            animator.SetBool("Backward", false);
+            SendAnimationEvent(false, AnimationChange.Backward);
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            animator.SetBool("Crouch", true);
+            SendAnimationEvent(true, AnimationChange.Crouch);
+        }
+        else
+        {
+            animator.SetBool("Crouch", false);
+            SendAnimationEvent(false, AnimationChange.Crouch);
         }
     }
 
