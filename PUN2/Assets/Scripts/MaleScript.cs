@@ -10,6 +10,7 @@ public class MaleScript : MonoBehaviour
     public Animator animator;
     public HealthBar playerBar;
     public Collider[] attackColl;
+    public Transform playertransform;
     private bool isLoading = false;
 
     enum Attacktype
@@ -44,6 +45,7 @@ public class MaleScript : MonoBehaviour
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
+        playertransform = GetComponent<Transform>();
     }
 
     void Start()
@@ -116,6 +118,11 @@ public class MaleScript : MonoBehaviour
 
     void Update()
     {
+        Vector3 auxposition = transform.position;
+        Quaternion auxrotation = transform.rotation;
+        auxposition.x = 0.0f;
+        transform.SetPositionAndRotation(auxposition,auxrotation);
+
         if (!PV.IsMine)
             return;
        
