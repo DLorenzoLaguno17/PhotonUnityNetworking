@@ -10,6 +10,7 @@ public class MaleScript : MonoBehaviour
     public Animator animator;
     public HealthBar playerBar;
     public Collider[] attackColl;
+    public Transform playertransform;
     private bool isLoading = false;
 
     enum Attacktype
@@ -44,6 +45,7 @@ public class MaleScript : MonoBehaviour
     private void Awake()
     {
         PV = GetComponent<PhotonView>();
+        playertransform = GetComponent<Transform>();
     }
 
     void Start()
@@ -116,42 +118,13 @@ public class MaleScript : MonoBehaviour
 
     void Update()
     {
+        Vector3 auxposition = transform.position;
+        Quaternion auxrotation = transform.rotation;
+        auxposition.x = 0.0f;
+        transform.SetPositionAndRotation(auxposition,auxrotation);
+
         if (!PV.IsMine)
             return;
-
-        // Player movement
-        if (Input.GetKey(KeyCode.D))
-        {
-            animator.SetBool("Forward", true);
-            SendAnimationEvent(true, AnimationChange.Forward);   
-        }
-        else 
-        {
-            animator.SetBool("Forward", false);
-            SendAnimationEvent(false, AnimationChange.Forward);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            animator.SetBool("Backward", true);
-            SendAnimationEvent(true, AnimationChange.Backward);
-        }
-        else
-        {
-            animator.SetBool("Backward", false);
-            SendAnimationEvent(false, AnimationChange.Backward);
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            animator.SetBool("Crouch", true);
-            SendAnimationEvent(true, AnimationChange.Crouch);
-        }
-        else
-        {
-            animator.SetBool("Crouch", false);
-            SendAnimationEvent(false, AnimationChange.Crouch);
-        }
        
         // Player attacks
         if (Input.GetKeyDown(KeyCode.I))
@@ -212,6 +185,40 @@ public class MaleScript : MonoBehaviour
         else
         {
             animator.SetBool("Kick2", false);
+        }
+
+        // Player movement
+        if (Input.GetKey(KeyCode.D))
+        {
+            animator.SetBool("Forward", true);
+            SendAnimationEvent(true, AnimationChange.Forward);
+        }
+        else
+        {
+            animator.SetBool("Forward", false);
+            SendAnimationEvent(false, AnimationChange.Forward);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            animator.SetBool("Backward", true);
+            SendAnimationEvent(true, AnimationChange.Backward);
+        }
+        else
+        {
+            animator.SetBool("Backward", false);
+            SendAnimationEvent(false, AnimationChange.Backward);
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            animator.SetBool("Crouch", true);
+            SendAnimationEvent(true, AnimationChange.Crouch);
+        }
+        else
+        {
+            animator.SetBool("Crouch", false);
+            SendAnimationEvent(false, AnimationChange.Crouch);
         }
     }
 
