@@ -61,7 +61,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void EnterRoom()
     {
         RoomOptions options = new RoomOptions();
-        options.MaxPlayers = 4;
+        options.MaxPlayers = 2;
+        options.PlayerTtl = 10000000;
         PhotonNetwork.JoinOrCreateRoom("FightingRoom", options, TypedLobby.Default);
     }
 }
