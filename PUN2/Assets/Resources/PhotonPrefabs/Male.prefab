@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1743956828936106890}
   - component: {fileID: -4990892303237112078}
   - component: {fileID: 6002245466024561147}
+  - component: {fileID: 774773074127595001}
   m_Layer: 0
   m_Name: Male
   m_TagString: Player
@@ -76,6 +77,7 @@ MonoBehaviour:
   - {fileID: 4279806037935164920}
   - {fileID: 8293088332800943778}
   - {fileID: 4095588340312128204}
+  playertransform: {fileID: 0}
 --- !u!114 &1743956828936106890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +98,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: -4990892303237112078}
+  - {fileID: 774773074127595001}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -129,6 +132,63 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &774773074127595001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165465541658504961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 2
+    Name: Forward
+  - Type: 4
+    SynchronizeType: 2
+    Name: Backward
+  - Type: 4
+    SynchronizeType: 2
+    Name: Crouch
+  - Type: 4
+    SynchronizeType: 2
+    Name: Punch1
+  - Type: 4
+    SynchronizeType: 2
+    Name: Punch2
+  - Type: 4
+    SynchronizeType: 2
+    Name: Punch3
+  - Type: 4
+    SynchronizeType: 2
+    Name: Kick1
+  - Type: 4
+    SynchronizeType: 2
+    Name: Kick2
+  - Type: 4
+    SynchronizeType: 2
+    Name: Kick3
+  - Type: 4
+    SynchronizeType: 2
+    Name: Jump
+  - Type: 4
+    SynchronizeType: 2
+    Name: Dead
+  - Type: 4
+    SynchronizeType: 2
+    Name: Hit
+  - Type: 4
+    SynchronizeType: 2
+    Name: Block
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!1 &391303072074187375
 GameObject:
   m_ObjectHideFlags: 0

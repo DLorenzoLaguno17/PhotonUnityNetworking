@@ -36,8 +36,12 @@ public class MaleScript : MonoBehaviour
     {
         Forward,
         Backward,
-        Punch,
-        Kick,
+        Punch1,
+        Punch2,
+        Punch3,
+        Kick1,
+        Kick2,
+        Kick3,
         Jump,
         Crouch
     }
@@ -101,11 +105,23 @@ public class MaleScript : MonoBehaviour
                 else if (anim == AnimationChange.Backward)
                     animator.SetBool("Backward", trigger);
 
-                else if (anim == AnimationChange.Punch)
-                    animator.SetBool("Punch", trigger);
+                else if (anim == AnimationChange.Punch1)
+                    animator.SetBool("Punch1", trigger);
 
-                else if (anim == AnimationChange.Kick)
-                    animator.SetBool("Kick", trigger);
+                else if (anim == AnimationChange.Punch2)
+                    animator.SetBool("Punch2", trigger);
+
+                else if (anim == AnimationChange.Punch3)
+                    animator.SetBool("Punch3", trigger);
+
+                else if (anim == AnimationChange.Kick1)
+                    animator.SetBool("Kick1", trigger);
+
+                else if (anim == AnimationChange.Kick2)
+                    animator.SetBool("Kick2", trigger);
+
+                else if (anim == AnimationChange.Kick3)
+                    animator.SetBool("Kick3", trigger);
 
                 else if (anim == AnimationChange.Crouch)
                     animator.SetBool("Crouch", trigger);
@@ -191,44 +207,32 @@ public class MaleScript : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             animator.SetBool("Forward", true);
-            SendAnimationEvent(true, AnimationChange.Forward);
         }
         else
         {
             animator.SetBool("Forward", false);
-            SendAnimationEvent(false, AnimationChange.Forward);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             animator.SetBool("Backward", true);
-            SendAnimationEvent(true, AnimationChange.Backward);
         }
         else
         {
             animator.SetBool("Backward", false);
-            SendAnimationEvent(false, AnimationChange.Backward);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             animator.SetBool("Crouch", true);
-            SendAnimationEvent(true, AnimationChange.Crouch);
         }
         else
         {
             animator.SetBool("Crouch", false);
-            SendAnimationEvent(false, AnimationChange.Crouch);
         }
     }
 
     // Events
-    private void SendAnimationEvent(bool trigger, AnimationChange anim)
-    {
-        object[] datas = new object[] { PV.ViewID, trigger, anim };
-        PhotonNetwork.RaiseEvent(ANIMATION_CHANGE_EVENT, datas, RaiseEventOptions.Default, SendOptions.SendReliable);
-    }
-
     private void SendCollisionEvent(int id, int damage)
     {
         object[] datas = new object[] { id, damage };
