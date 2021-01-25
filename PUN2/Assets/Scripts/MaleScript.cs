@@ -138,6 +138,8 @@ public class MaleScript : MonoBehaviour
 
             animator.SetBool("Backward", false);
             animator.SetBool("Forward", false);
+           
+            
             animator.SetBool("Dead", true);
         }
         else
@@ -362,8 +364,8 @@ public class MaleScript : MonoBehaviour
     // Attack collider handler
     private void LaunchAttack (Collider coll, Attacktype attackType)
     {
-        audsource.clip = MissFast;
-        audsource.Play();
+        /*audsource.clip = MissFast;
+        audsource.Play();*/
        
         Collider[] cols = Physics.OverlapBox(coll.bounds.center, coll.bounds.extents, coll.transform.rotation, LayerMask.GetMask("DefenseHitbox"));
         foreach (Collider c in cols)
