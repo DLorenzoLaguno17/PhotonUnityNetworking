@@ -23,8 +23,7 @@ public class MaleScript : MonoBehaviour
 
     private int playerHealth = 0;
     private PhotonView PV;
-    private byte ATTACK_EVENT = 2;
-    private byte ANIMATION_CHANGE_EVENT = 5;    
+    private byte ATTACK_EVENT = 2;    
 
     private Transform defaultCamTransform;
     private Vector3 resetPos;
@@ -34,6 +33,7 @@ public class MaleScript : MonoBehaviour
     private LevelLoader loader;
     private float timer;
     private bool blocking;
+    private bool hit;
 
 
     public enum AnimationChange
@@ -93,49 +93,16 @@ public class MaleScript : MonoBehaviour
 
             if (id == PV.ViewID)
             {
-                if(!blocking)
+                if (!blocking)
+                {
+                    hit = true;
                     ReceiveDamage(damage);
+                }
             }
         }
-        else if (obj.Code == ANIMATION_CHANGE_EVENT)
+        else 
         {
-            object[] datas = (object[])obj.CustomData;
-            int id = (int)datas[0];
-            bool trigger = (bool)datas[1];
-            AnimationChange anim = (AnimationChange)datas[2];
-
-            if (id == PV.ViewID)
-            {
-                if (anim == AnimationChange.Forward)
-                    animator.SetBool("Forward", trigger);
-
-                else if (anim == AnimationChange.Backward)
-                    animator.SetBool("Backward", trigger);
-
-                else if (anim == AnimationChange.Punch1)
-                    animator.SetBool("Punch1", trigger);
-
-                else if (anim == AnimationChange.Punch2)
-                    animator.SetBool("Punch2", trigger);
-
-                else if (anim == AnimationChange.Punch3)
-                    animator.SetBool("Punch3", trigger);
-
-                else if (anim == AnimationChange.Kick1)
-                    animator.SetBool("Kick1", trigger);
-
-                else if (anim == AnimationChange.Kick2)
-                    animator.SetBool("Kick2", trigger);
-
-                else if (anim == AnimationChange.Kick3)
-                    animator.SetBool("Kick3", trigger);
-
-                else if (anim == AnimationChange.Crouch)
-                    animator.SetBool("Crouch", trigger);
-
-                else if (anim == AnimationChange.Jump)
-                    animator.SetBool("Jump", trigger);
-            }
+            hit = false;
         }
     }
 
@@ -306,6 +273,18 @@ public class MaleScript : MonoBehaviour
         {
             animator.SetBool("Block", false);
         }
+
+        //Player Hit
+        if(hit)
+        {
+            animator.SetBool("Hit", true);
+        }
+        else
+        {
+            animator.SetBool("Hit", false);
+        }
+
+        //hit = false;
 
     }
 
