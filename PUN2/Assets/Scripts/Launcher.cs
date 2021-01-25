@@ -1,12 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
     private int cnt = 0;
+    private MenuManager menu;
+    private Text connecting;
+
+    private void Awake()
+    {
+        menu = GameObject.Find("MenuManager").GetComponent<MenuManager>();
+        connecting = GameObject.Find("Connecting").GetComponent<Text>();
+        if (PhotonNetwork.IsConnected)
+        {
+            menu.playButton.interactable = true;
+            connecting.text = "CONNECTED";
+        }
+    }
 
     private void Start()
     {
@@ -23,6 +37,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         print("Connected to server");
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         PhotonNetwork.AutomaticallySyncScene = true;
+        menu.playButton.interactable = true;
+        connecting.text = "CONNECTED";
     }
 
     public override void OnJoinedRoom()

@@ -1,21 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Pause : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject pausemenu;  
 
-    public GameObject pausemenu;
-  
-
-    // Update is called once per frame
     void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pausemenu.activeInHierarchy == true) { 
+            if (pausemenu.activeInHierarchy == true) 
+            { 
                 pausemenu.SetActive(false);
                 Time.timeScale = 1;
             }
@@ -29,25 +27,21 @@ public class Pause : MonoBehaviour
 
     }
 
-
-
-    public void Resume() {
+    public void Resume() 
+    {
         pausemenu.SetActive(false);
         Time.timeScale = 1;
     }
 
-    public void Mainmenu()
+    public void MainMenu()
     {
         Time.timeScale = 1;
-        GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().LoadSceneByName("MainMenu");
-
-
+        GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().LoadSceneByName("MainMenu", false);
+        PhotonNetwork.LeaveRoom();
     }
-
 
     public void Quit()
     {
         Application.Quit();
-
     }
 }

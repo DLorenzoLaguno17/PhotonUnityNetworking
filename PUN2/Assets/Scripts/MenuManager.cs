@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour
     private Text creditsText;
     private Text titleText;
 
-    private Button playButton;
+    public Button playButton;
     private Button creditsButton;
     private Button creditsBackButton;
     private Button controlsButton;

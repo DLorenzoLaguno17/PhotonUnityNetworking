@@ -11,8 +11,7 @@ public class MaleScript : MonoBehaviour
     public HealthBar playerBar;
     public Collider[] attackColl;
     public Transform playertransform;
-    private bool isLoading = false;
-    
+    private bool isDead = false;    
 
     enum Attacktype
     {
@@ -110,187 +109,193 @@ public class MaleScript : MonoBehaviour
 
     void Update()
     {
-        blocking = false;
-
-        if (timer >= 0.0)
-            timer -= Time.deltaTime;
-
-        Vector3 auxposition = transform.position;
-        Quaternion auxrotation = transform.rotation;
-        auxposition.x = 0.0f;
-        transform.SetPositionAndRotation(auxposition,auxrotation);
-
-        if (!PV.IsMine)
-            return;
-       
-        // Player attacks
-        if (Input.GetKeyDown(KeyCode.I))
+        if (isDead)
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Light  Punch"))
+            loader.LoadSceneByName("PostCombat");
+        }
+        else
+        {
+            blocking = false;
+
+            if (timer >= 0.0)
+                timer -= Time.deltaTime;
+
+            Vector3 auxposition = transform.position;
+            Quaternion auxrotation = transform.rotation;
+            auxposition.x = 0.0f;
+            transform.SetPositionAndRotation(auxposition, auxrotation);
+
+            if (!PV.IsMine)
+                return;
+
+            // Player attacks
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                if (timer <= 0.0)
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Light  Punch"))
                 {
-                    Debug.Log("Punch");
-                    LaunchAttack(attackColl[1], Attacktype.SOFT);
-                    animator.SetBool("Punch3", true);
-                    timerReset();
+                    if (timer <= 0.0)
+                    {
+                        Debug.Log("Punch");
+                        LaunchAttack(attackColl[1], Attacktype.SOFT);
+                        animator.SetBool("Punch3", true);
+                        timerReset();
+                    }
                 }
             }
-        }
-        else
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Light  Punch") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
-                animator.SetBool("Punch3", false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+            else
             {
-                if (timer <= 0.0)
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Light  Punch") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
+                    animator.SetBool("Punch3", false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
                 {
-                    Debug.Log("Punch");
-                    LaunchAttack(attackColl[0], Attacktype.NORMAL);
-                    animator.SetBool("Punch1", true);
-                    timerReset();
+                    if (timer <= 0.0)
+                    {
+                        Debug.Log("Punch");
+                        LaunchAttack(attackColl[0], Attacktype.NORMAL);
+                        animator.SetBool("Punch1", true);
+                        timerReset();
+                    }
                 }
             }
-        }
-        else
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Punch") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
-                animator.SetBool("Punch1", false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Heavy Punch"))
+            else
             {
-                if (timer <= 0.0)
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Punch") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
+                    animator.SetBool("Punch1", false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Heavy Punch"))
                 {
-                    Debug.Log("Punch");
-                    LaunchAttack(attackColl[0], Attacktype.HARD);
-                    animator.SetBool("Punch2", true);
-                    timerReset();
+                    if (timer <= 0.0)
+                    {
+                        Debug.Log("Punch");
+                        LaunchAttack(attackColl[0], Attacktype.HARD);
+                        animator.SetBool("Punch2", true);
+                        timerReset();
+                    }
                 }
             }
-        }
-        else
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Heavy Punch") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
-                animator.SetBool("Punch2", false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("LowKick"))
+            else
             {
-                if (timer <= 0.0)
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Heavy Punch") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
+                    animator.SetBool("Punch2", false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("LowKick"))
                 {
-                    LaunchAttack(attackColl[2], Attacktype.SOFT);
-                    animator.SetBool("Kick1", true);
-                    timerReset();
+                    if (timer <= 0.0)
+                    {
+                        LaunchAttack(attackColl[2], Attacktype.SOFT);
+                        animator.SetBool("Kick1", true);
+                        timerReset();
+                    }
                 }
             }
-        }
-        else
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("LowKick") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
-                animator.SetBool("Kick1", false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Medium kick"))
+            else
             {
-                if (timer <= 0.0)
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("LowKick") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
+                    animator.SetBool("Kick1", false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Medium kick"))
                 {
-                    LaunchAttack(attackColl[1], Attacktype.NORMAL);
-                    animator.SetBool("Kick3", true);
-                    timerReset();
+                    if (timer <= 0.0)
+                    {
+                        LaunchAttack(attackColl[1], Attacktype.NORMAL);
+                        animator.SetBool("Kick3", true);
+                        timerReset();
+                    }
                 }
             }
-        }
-        else
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Medium kick") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
-                animator.SetBool("Kick3", false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("heavy Kcik"))
+            else
             {
-                if (timer <= 0.0)
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Medium kick") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
+                    animator.SetBool("Kick3", false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("heavy Kcik"))
                 {
-                    Debug.Log("attack done");
-                    LaunchAttack(attackColl[0], Attacktype.HARD);
-                    animator.SetBool("Kick2", true);
-                    timerReset();
+                    if (timer <= 0.0)
+                    {
+                        Debug.Log("attack done");
+                        LaunchAttack(attackColl[0], Attacktype.HARD);
+                        animator.SetBool("Kick2", true);
+                        timerReset();
+                    }
                 }
             }
-        }
-        else
-        {
-            if(animator.GetCurrentAnimatorStateInfo(0).IsName("heavy Kcik") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
-                animator.SetBool("Kick2", false);
-        }
+            else
+            {
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("heavy Kcik") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
+                    animator.SetBool("Kick2", false);
+            }
 
-        // Player movement
-        if (Input.GetKey(KeyCode.D))
-        {
-            animator.SetBool("Forward", true);
-        }
-        else
-        {
-            animator.SetBool("Forward", false);
-        }
+            // Player movement
+            if (Input.GetKey(KeyCode.D))
+            {
+                animator.SetBool("Forward", true);
+            }
+            else
+            {
+                animator.SetBool("Forward", false);
+            }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            animator.SetBool("Backward", true);
-        }
-        else
-        {
-            animator.SetBool("Backward", false);
-        }
+            if (Input.GetKey(KeyCode.A))
+            {
+                animator.SetBool("Backward", true);
+            }
+            else
+            {
+                animator.SetBool("Backward", false);
+            }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            blocking = true;
-            animator.SetBool("Crouch", true);
-            CrouchHitbox.GetComponent<BoxCollider>().enabled = true;
-            NormalHitbox.GetComponent<BoxCollider>().enabled = false;
-        }
-        else
-        {
-            animator.SetBool("Crouch", false);
-            CrouchHitbox.GetComponent<BoxCollider>().enabled = false;
-            NormalHitbox.GetComponent<BoxCollider>().enabled = true;
+            if (Input.GetKey(KeyCode.S))
+            {
+                blocking = true;
+                animator.SetBool("Crouch", true);
+                CrouchHitbox.GetComponent<BoxCollider>().enabled = true;
+                NormalHitbox.GetComponent<BoxCollider>().enabled = false;
+            }
+            else
+            {
+                animator.SetBool("Crouch", false);
+                CrouchHitbox.GetComponent<BoxCollider>().enabled = false;
+                NormalHitbox.GetComponent<BoxCollider>().enabled = true;
 
-        }
+            }
 
-        //Player block
-        if(Input.GetKey(KeyCode.W))
-        {
-            blocking = true;
-            animator.SetBool("Block", true);
-        }
-        else
-        {
-            animator.SetBool("Block", false);
-        }
+            //Player block
+            if (Input.GetKey(KeyCode.W))
+            {
+                blocking = true;
+                animator.SetBool("Block", true);
+            }
+            else
+            {
+                animator.SetBool("Block", false);
+            }
 
-        //Player Hit
-        if(hit)
-        {
-            animator.SetBool("Hit", true);
+            //Player Hit
+            if (hit)
+            {
+                animator.SetBool("Hit", true);
+            }
+            else
+            {
+                animator.SetBool("Hit", false);
+            }
         }
-        else
-        {
-            animator.SetBool("Hit", false);
-        }
-
     }
 
     // Events
@@ -305,10 +310,9 @@ public class MaleScript : MonoBehaviour
         playerHealth -= damage;
         playerBar.SetHealth(playerHealth);
 
-        if (playerHealth <= 0 && PhotonNetwork.IsMasterClient && !isLoading)
+        if (playerHealth <= 0)
         {
-            isLoading = true;
-            loader.LoadSceneByName("PostCombat");
+            isDead = true;
         }
     }
 
