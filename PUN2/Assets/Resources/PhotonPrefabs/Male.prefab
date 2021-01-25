@@ -175,8 +175,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playertransform: {fileID: 0}
-  CrouchHitbox: {fileID: 0}
-  NormalHitbox: {fileID: 0}
+  CrouchHitbox: {fileID: 561729022832042757}
+  NormalHitbox: {fileID: 33350077075735313}
 --- !u!114 &1743956828936106890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,7 +1088,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7379366024905366017}
   m_Layer: 0
-  m_Name: Defense Colliders (1)
+  m_Name: Defense Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1120,7 +1120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1807089084127268258}
   m_Layer: 0
-  m_Name: Attack Colliders (1)
+  m_Name: Attack Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
