@@ -15,8 +15,12 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         menu = GameObject.Find("MenuManager").GetComponent<MenuManager>();
         connecting = GameObject.Find("Connecting").GetComponent<Text>();
+
         if (PhotonNetwork.IsConnected)
         {
+            if (PhotonNetwork.InRoom)
+                PhotonNetwork.LeaveRoom();
+
             menu.playButton.interactable = true;
             connecting.text = "CONNECTED";
         }

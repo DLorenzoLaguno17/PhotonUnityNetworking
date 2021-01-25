@@ -33,9 +33,6 @@ public class LevelLoader : MonoBehaviour
     {
         object[] datas = new object[] { sceneName };
         PhotonNetwork.RaiseEvent(LOAD_SCENE_EVENT, datas, RaiseEventOptions.Default, SendOptions.SendReliable);
-
-        if (sceneName == "MainMenu" && PhotonNetwork.InRoom)
-            PhotonNetwork.LeaveRoom();
     }
 
     // Scene loaders
