@@ -998,6 +998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5632276092623528239}
   - component: {fileID: 6469821704062440243}
+  - component: {fileID: 4507160389224941629}
   m_Layer: 0
   m_Name: Mesh_Male
   m_TagString: Untagged
@@ -1126,6 +1127,22 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0011577159, y: -0.000097602606, z: 1.0317731}
     m_Extent: {x: 0.21298118, y: 0.8517251, z: 1.0685816}
   m_DirtyAABB: 0
+--- !u!54 &4507160389224941629
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3004499604535769870}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 54
+  m_CollisionDetection: 0
 --- !u!1 &3128751795738736172
 GameObject:
   m_ObjectHideFlags: 0
