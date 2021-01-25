@@ -12,6 +12,7 @@ public class MaleScript : MonoBehaviour
     public Collider[] attackColl;
     public Transform playertransform;
     private bool isDead = false;
+    private bool isLoading = false;
     private float deathTime = 0.0f;
 
     enum Attacktype
@@ -112,8 +113,11 @@ public class MaleScript : MonoBehaviour
     {
         if (isDead)
         {
-            if (Time.time - deathTime > 3.0f)
+            if (Time.time - deathTime > 3.0f && !isLoading)
+            {
+                isLoading = true;
                 loader.LoadSceneByName("PostCombat");
+            }
 
             animator.SetBool("Backward", false);
             animator.SetBool("Forward", false);
