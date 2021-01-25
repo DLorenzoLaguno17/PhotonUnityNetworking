@@ -251,23 +251,35 @@ public class MaleScript : MonoBehaviour
                     animator.SetBool("Kick2", false);
             }
 
-            // Player movement
+            // Player movement         
             if (Input.GetKey(KeyCode.D))
             {
-                animator.SetBool("Forward", true);
+                if (PhotonNetwork.IsMasterClient)
+                    animator.SetBool("Forward", true);
+                else
+                    animator.SetBool("Backward", true);
             }
             else
             {
-                animator.SetBool("Forward", false);
+                if (PhotonNetwork.IsMasterClient)
+                    animator.SetBool("Forward", false);
+                else
+                    animator.SetBool("Backward", false);
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                animator.SetBool("Backward", true);
+                if (PhotonNetwork.IsMasterClient)
+                    animator.SetBool("Backward", true);
+                else
+                    animator.SetBool("Forward", true);
             }
             else
             {
-                animator.SetBool("Backward", false);
+                if (PhotonNetwork.IsMasterClient)
+                    animator.SetBool("Backward", false);
+                else
+                    animator.SetBool("Forward", false);
             }
 
             if (Input.GetKey(KeyCode.S))
