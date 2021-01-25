@@ -36,7 +36,6 @@ public class PostCombatButtons : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             loader.LoadSceneByName("MainMenu");
-            PhotonNetwork.LeaveRoom();
         }
     }
 }
