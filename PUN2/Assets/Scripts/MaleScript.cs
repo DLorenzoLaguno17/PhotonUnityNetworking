@@ -119,6 +119,18 @@ public class MaleScript : MonoBehaviour
                 loader.LoadSceneByName("PostCombat");
             }
 
+            animator.SetBool("Punch1", false);
+            animator.SetBool("Punch2", false);
+            animator.SetBool("Punch3", false);
+
+            animator.SetBool("Kick1", false);
+            animator.SetBool("Kick2", false);
+            animator.SetBool("Kick3", false);
+
+            animator.SetBool("Block", false);
+            animator.SetBool("Crouch", false);
+            animator.SetBool("Hit", false);
+
             animator.SetBool("Backward", false);
             animator.SetBool("Forward", false);
             animator.SetBool("Dead", true);
