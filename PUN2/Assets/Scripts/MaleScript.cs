@@ -11,7 +11,8 @@ public class MaleScript : MonoBehaviour
     public HealthBar playerBar;
     public Collider[] attackColl;
     public Transform playertransform;
-    private bool isDead = false;    
+    private bool isDead = false;
+    private float deathTime = 0.0f;
 
     enum Attacktype
     {
@@ -111,7 +112,8 @@ public class MaleScript : MonoBehaviour
     {
         if (isDead)
         {
-            loader.LoadSceneByName("PostCombat");
+            if (Time.time - deathTime > 3)
+                loader.LoadSceneByName("PostCombat");
         }
         else
         {
@@ -313,6 +315,7 @@ public class MaleScript : MonoBehaviour
         if (playerHealth <= 0)
         {
             isDead = true;
+            deathTime = Time.time;
         }
     }
 
