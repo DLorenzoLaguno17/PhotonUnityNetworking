@@ -112,8 +112,12 @@ public class MaleScript : MonoBehaviour
     {
         if (isDead)
         {
-            if (Time.time - deathTime > 3)
+            if (Time.time - deathTime > 3.0f)
                 loader.LoadSceneByName("PostCombat");
+
+            animator.SetBool("Backward", false);
+            animator.SetBool("Forward", false);
+            animator.SetBool("Dead", true);
         }
         else
         {
