@@ -354,7 +354,7 @@ public class MaleScript : MonoBehaviour
         playerHealth -= damage;
         playerBar.SetHealth(playerHealth);
 
-        if (playerHealth <= 0)
+        if (playerHealth <= 0 && !isDead)
         {
             isDead = true;
             deathTime = Time.time;
