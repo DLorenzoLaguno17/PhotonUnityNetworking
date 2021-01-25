@@ -33,6 +33,7 @@ public class MaleScript : MonoBehaviour
     private GameObject fighter;
     private LevelLoader loader;
     private float timer;
+    private bool blocking;
 
 
     public enum AnimationChange
@@ -65,6 +66,7 @@ public class MaleScript : MonoBehaviour
         animator = GetComponent<Animator>();
         loader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
         timer = 0.0f;
+        blocking = false;
 
         // Player health
         playerHealth = (int)playerBar.slider.maxValue;
@@ -91,7 +93,8 @@ public class MaleScript : MonoBehaviour
 
             if (id == PV.ViewID)
             {
-                ReceiveDamage(damage);
+                if(!blocking)
+                    ReceiveDamage(damage);
             }
         }
         else if (obj.Code == ANIMATION_CHANGE_EVENT)
@@ -138,7 +141,9 @@ public class MaleScript : MonoBehaviour
 
     void Update()
     {
-        if(timer >= 0.0)
+        blocking = false;
+
+        if (timer >= 0.0)
             timer -= Time.deltaTime;
 
         Vector3 auxposition = transform.position;
@@ -283,12 +288,25 @@ public class MaleScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
+            blocking = true;
             animator.SetBool("Crouch", true);
         }
         else
         {
             animator.SetBool("Crouch", false);
         }
+
+        //Player block
+        if(Input.GetKey(KeyCode.W))
+        {
+            blocking = true;
+            animator.SetBool("Block", true);
+        }
+        else
+        {
+            animator.SetBool("Block", false);
+        }
+
     }
 
     // Events
