@@ -34,6 +34,8 @@ public class MaleScript : MonoBehaviour
     private float timer;
     private bool blocking;
     private bool hit;
+    public GameObject CrouchHitbox;
+    public GameObject NormalHitbox;
 
 
     public enum AnimationChange
@@ -257,10 +259,15 @@ public class MaleScript : MonoBehaviour
         {
             blocking = true;
             animator.SetBool("Crouch", true);
+            CrouchHitbox.GetComponent<BoxCollider>().enabled = true;
+            NormalHitbox.GetComponent<BoxCollider>().enabled = false;
         }
         else
         {
             animator.SetBool("Crouch", false);
+            CrouchHitbox.GetComponent<BoxCollider>().enabled = false;
+            NormalHitbox.GetComponent<BoxCollider>().enabled = true;
+
         }
 
         //Player block
@@ -283,8 +290,6 @@ public class MaleScript : MonoBehaviour
         {
             animator.SetBool("Hit", false);
         }
-
-        //hit = false;
 
     }
 
@@ -310,7 +315,7 @@ public class MaleScript : MonoBehaviour
     // Attack collider handler
     private void LaunchAttack (Collider coll, Attacktype attackType)
     {
-        Collider[] cols = Physics.OverlapBox(coll.bounds.center, coll.bounds.extents, coll.transform.rotation, LayerMask.GetMask("Hitbox"));
+        Collider[] cols = Physics.OverlapBox(coll.bounds.center, coll.bounds.extents, coll.transform.rotation, LayerMask.GetMask("DefenseHitbox"));
         foreach (Collider c in cols)
         {
             if (c.transform.parent.parent == transform)
