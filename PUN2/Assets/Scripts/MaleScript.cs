@@ -346,7 +346,8 @@ public class MaleScript : MonoBehaviour
 
     public void ReceiveDamage(int damage)
     {
-        audsource.PlayOneShot(HitSound,volume);
+        audsource.clip = HitSound;
+        audsource.Play();
 
         playerHealth -= damage;
         playerBar.SetHealth(playerHealth);
@@ -361,7 +362,9 @@ public class MaleScript : MonoBehaviour
     // Attack collider handler
     private void LaunchAttack (Collider coll, Attacktype attackType)
     {
-        audsource.PlayOneShot(MissFast, volume);
+        audsource.clip = MissFast;
+        audsource.Play();
+       
         Collider[] cols = Physics.OverlapBox(coll.bounds.center, coll.bounds.extents, coll.transform.rotation, LayerMask.GetMask("DefenseHitbox"));
         foreach (Collider c in cols)
         {
