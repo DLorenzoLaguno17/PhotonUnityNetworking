@@ -11,7 +11,7 @@ public class Pause : MonoBehaviour
     private GameObject otherPlayer;
     private byte LEFT_ROOM_EVENT = 7;
     private byte PAUSE_GAME_EVENT = 13;
-    private byte RESUME_GAME_EVENT = 17;
+    private byte RESUME_GAME_EVENT = 37;
     private float lastTime = 0;
 
     private void Start()
@@ -22,15 +22,15 @@ public class Pause : MonoBehaviour
     // Event handlers
     private void OnEnable()
     {
-        PhotonNetwork.NetworkingClient.EventReceived += LeaveSceneEvent;
+        PhotonNetwork.NetworkingClient.EventReceived += ReceivePauseEvent;
     }
 
     private void OnDisable()
     {
-        PhotonNetwork.NetworkingClient.EventReceived -= LeaveSceneEvent;
+        PhotonNetwork.NetworkingClient.EventReceived -= ReceivePauseEvent;
     }
 
-    private void LeaveSceneEvent(EventData obj)
+    private void ReceivePauseEvent(EventData obj)
     {
         if (obj.Code == LEFT_ROOM_EVENT)
             Destroy(otherPlayer);
@@ -68,7 +68,7 @@ public class Pause : MonoBehaviour
                 pausemenu.SetActive(false);
                 Time.timeScale = 1;
 
-                object[] datas = new object[] { "minor" };
+                object[] datas = new object[] { "mamausa" };
                 PhotonNetwork.RaiseEvent(RESUME_GAME_EVENT, datas, RaiseEventOptions.Default, SendOptions.SendReliable);
             }
             else {
@@ -87,7 +87,7 @@ public class Pause : MonoBehaviour
         pausemenu.SetActive(false);
         Time.timeScale = 1;
 
-        object[] datas = new object[] { "minor" };
+        object[] datas = new object[] { "mamausa" };
         PhotonNetwork.RaiseEvent(RESUME_GAME_EVENT, datas, RaiseEventOptions.Default, SendOptions.SendReliable);
     }
 
