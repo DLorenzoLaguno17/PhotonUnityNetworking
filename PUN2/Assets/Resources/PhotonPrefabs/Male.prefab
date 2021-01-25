@@ -171,9 +171,9 @@ MonoBehaviour:
   animator: {fileID: 8453947632205654616}
   playerBar: {fileID: 8057743039723251219}
   attackColl:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2031640953149192229}
+  - {fileID: 2155843990022881660}
+  - {fileID: 8732315364410147355}
   playertransform: {fileID: 0}
   CrouchHitbox: {fileID: 561729022832042757}
   NormalHitbox: {fileID: 33350077075735313}
