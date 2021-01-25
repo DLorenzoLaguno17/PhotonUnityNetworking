@@ -191,6 +191,10 @@ MonoBehaviour:
   playertransform: {fileID: 0}
   CrouchHitbox: {fileID: 561729022832042757}
   NormalHitbox: {fileID: 33350077075735313}
+  HitSound: {fileID: 8300000, guid: e1a3c3326780de9468457eb54767b9c3, type: 3}
+  MissFast: {fileID: 8300000, guid: ffb727c4960cf6e43b888362fcf3366b, type: 3}
+  MissSlow: {fileID: 8300000, guid: 7ee5e130725165e4c96b7a5e129fcc04, type: 3}
+  volume: 1
 --- !u!114 &1743956828936106890
 MonoBehaviour:
   m_ObjectHideFlags: 0
