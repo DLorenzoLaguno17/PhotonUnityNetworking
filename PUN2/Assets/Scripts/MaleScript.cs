@@ -37,7 +37,11 @@ public class MaleScript : MonoBehaviour
     private bool hit;
     public GameObject CrouchHitbox;
     public GameObject NormalHitbox;
-
+    private AudioSource audsource;
+    public AudioClip HitSound;
+    public AudioClip MissFast;
+    public AudioClip MissSlow;
+    public float volume = 1f;
 
     public enum AnimationChange
     {
@@ -71,6 +75,7 @@ public class MaleScript : MonoBehaviour
         timer = 0.0f;
         blocking = false;
 
+        audsource = GetComponent<AudioSource>();
         // Player health
         playerHealth = (int)playerBar.slider.maxValue;
         playerBar.SetMaxHealth(playerHealth);
@@ -341,6 +346,8 @@ public class MaleScript : MonoBehaviour
 
     public void ReceiveDamage(int damage)
     {
+        audsource.PlayOneShot(HitSound,volume);
+
         playerHealth -= damage;
         playerBar.SetHealth(playerHealth);
 
@@ -354,6 +361,7 @@ public class MaleScript : MonoBehaviour
     // Attack collider handler
     private void LaunchAttack (Collider coll, Attacktype attackType)
     {
+        audsource.PlayOneShot(MissFast, volume);
         Collider[] cols = Physics.OverlapBox(coll.bounds.center, coll.bounds.extents, coll.transform.rotation, LayerMask.GetMask("DefenseHitbox"));
         foreach (Collider c in cols)
         {
@@ -364,15 +372,15 @@ public class MaleScript : MonoBehaviour
             switch(attackType)
             {
                 case Attacktype.SOFT:
-                   damage = 10;
+                   damage = 5;
                 break;
 
                 case Attacktype.NORMAL:
-                    damage = 25;
+                    damage = 12;
                 break;
 
                 case Attacktype.HARD:
-                    damage = 40;
+                    damage = 20;
                 break;
 
                 default:
